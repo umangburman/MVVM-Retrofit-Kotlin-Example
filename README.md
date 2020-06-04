@@ -46,6 +46,7 @@ As said before, this example uses MVVM with Retrofit using Kotlin. Let's dive in
 ### **Step1:** Add dependencies to your project:
 
 ```xml
+dependencies {
 ...
 ...
     def lifecycle_version = "2.2.0"
@@ -67,4 +68,7 @@ As said before, this example uses MVVM with Retrofit using Kotlin. Let's dive in
 
 ...
 ...
+}
 ```
+
+
