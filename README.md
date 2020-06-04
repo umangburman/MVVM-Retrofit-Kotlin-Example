@@ -233,3 +233,110 @@ object MainActivityRepository {
     }
 }
 ```
+
+### **Step5:** Next step is to create the Model class:
+
+```kotlin
+package com.example.mvvmkotlinexample.model
+
+data class ServicesSetterGetter (
+    val message: String? = null
+)
+```
+
+### **Step6:** Next we create ApiInterface for the APIs:
+
+```kotlin
+package com.example.mvvmkotlinexample.retrofit
+
+import com.example.mvvmkotlinexample.model.ServicesSetterGetter
+import retrofit2.Call
+import retrofit2.http.GET
+
+interface ApiInterface {
+
+    @GET("services")
+    fun getServices() : Call<ServicesSetterGetter>
+
+}
+```
+
+### **Step7:** Next and very important step is to have a ViewModel in the project:
+
+```kotlin
+package com.example.mvvmkotlinexample.viewmodel
+
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.example.mvvmkotlinexample.model.ServicesSetterGetter
+import com.example.mvvmkotlinexample.repository.MainActivityRepository
+
+class MainActivityViewModel : ViewModel() {
+
+    var servicesLiveData: MutableLiveData<ServicesSetterGetter>? = null
+
+    fun getUser() : LiveData<ServicesSetterGetter>? {
+        servicesLiveData = MainActivityRepository.getServicesApiCall()
+        return servicesLiveData
+    }
+
+}
+```
+
+### **Step8:** Finally, we code the MainActivity kotlin file:
+
+```kotlin
+package com.example.mvvmkotlinexample.view
+
+import android.content.Context
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.example.mvvmkotlinexample.R
+import com.example.mvvmkotlinexample.viewmodel.MainActivityViewModel
+import kotlinx.android.synthetic.main.activity_main.*
+
+class MainActivity : AppCompatActivity() {
+
+    lateinit var context: Context
+
+    lateinit var mainActivityViewModel: MainActivityViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        context = this@MainActivity
+
+        mainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+
+        btnClick.setOnClickListener {
+
+            wp7progressBar.showProgressBar()
+
+            mainActivityViewModel.getUser()!!.observe(this, Observer { serviceSetterGetter ->
+
+                wp7progressBar.hideProgressBar()
+
+                val msg = serviceSetterGetter.message
+
+                lblResponse.text = msg
+
+            })
+
+        }
+
+    }
+}
+```
+
+For any clarifications please refer to the repository.
+
+
+## **Conclusion**
+
+The goal of the MVVM using Kotlin and Retrofit is to acheive the best possible solution and save development time by using the best architectural pattern suggested by Google.
+
+I hope it will help you too.
