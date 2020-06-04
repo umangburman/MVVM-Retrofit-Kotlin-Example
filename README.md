@@ -46,9 +46,7 @@ As said before, this example uses MVVM with Retrofit using Kotlin. Let's dive in
 ### **Step1:** Add dependencies to your project:
 
 ```xml
-dependencies {
-...
-...
+
     def lifecycle_version = "2.2.0"
     // - - ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
@@ -66,9 +64,74 @@ dependencies {
     // - - WP7 Progress Bar
     implementation 'com.github.shadowalker77:wp7progressbar:1.0.5'
 
-...
-...
-}
+
 ```
 
+### **Step2:** Create different folders that relate to MVVM:
 
+<img src="https://i.ibb.co/Tm3zPDs/Screenshot-2020-06-04-at-11-16-43-PM.png" />
+ 
+### **Step3:** Design your MainActivity which should look like this:
+ 
+ ```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.MainActivity">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnClick"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Click to Start"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        android:layout_margin="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ir.alirezabdn.wp7progress.WP7ProgressBar
+        android:id="@+id/wp7progressBar"
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:layout_centerVertical="true"
+        app:animationDuration="2300"
+        app:indicatorColor="@color/colorPrimary"
+        app:indicatorHeight="7"
+        app:indicatorRadius="5"
+        app:interval="100"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/lblYourResponseHere"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnClick" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lblYourResponseHere"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Response Here"
+        android:layout_marginBottom="30dp"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/lblResponse"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lblResponse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="- - -"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
