@@ -1,0 +1,15 @@
+// Steps to Create MVVM in Android using Kotlin
+
+1. Add ViewModel and LiveData dependencies
+
+2. Create 4 packages namely - model(Setter/Getter), repository, view, viewmodel
+
+3. Create a Model(Setter/Getter) class inside model package
+
+4. Create a ViewModel class inside ViewModel package
+
+5. Make a ViewModel class object using ViewProviders in your Activity/Fragment class
+
+6. Make a singleton Retrofit class for Retrofit client and attach a logger and write code for Retrofit
+
+7. Make a Repository class and link it to the Retrofit as shown in the code
