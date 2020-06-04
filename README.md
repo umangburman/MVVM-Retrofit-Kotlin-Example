@@ -46,7 +46,9 @@ As said before, this example uses MVVM with Retrofit using Kotlin. Let's dive in
 ### **Step1:** Add dependencies to your project:
 
 ```xml
-
+dependencies {
+...
+...
     def lifecycle_version = "2.2.0"
     // - - ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
@@ -63,8 +65,9 @@ As said before, this example uses MVVM with Retrofit using Kotlin. Let's dive in
 
     // - - WP7 Progress Bar
     implementation 'com.github.shadowalker77:wp7progressbar:1.0.5'
-
-
+...
+...
+}
 ```
 
 ### **Step2:** Create different folders that relate to MVVM:
