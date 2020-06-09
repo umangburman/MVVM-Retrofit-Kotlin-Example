@@ -159,7 +159,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    const val MainServer = "http://hashva.com/dr-friday/public/api/user/"
+    const val MainServer = "http://api.drfriday.in/api/user/"
 
     val retrofitClient: Retrofit.Builder by lazy {
 
